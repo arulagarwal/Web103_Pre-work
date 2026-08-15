@@ -1,0 +1,102 @@
+/* Pico handles typography, forms, buttons, and the <article> card shell.
+   Everything here is only what Pico does not already provide. */
+
+.site-header {
+  padding-block: 2rem 1rem;
+}
+
+.site-title {
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-header nav ul {
+  padding-left: 0;
+}
+
+/* --- Creator grid ------------------------------------------------------- */
+
+.creator-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.creator-card {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Fixed ratio with object-fit so avatars, banners, and square profile images
+   all sit in the grid at the same size instead of stretching their cards. */
+.creator-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.creator-card__body {
+  flex: 1;
+  padding: 1.25rem 1.25rem 0.5rem;
+}
+
+.creator-card__body h3 {
+  margin-bottom: 0.5rem;
+}
+
+.creator-card__channel {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.creator-card__actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0;
+  padding: 1rem 1.25rem;
+}
+
+.creator-card__actions [role='button'] {
+  flex: 1;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 0.875rem;
+  padding-inline: 0.5rem;
+}
+
+/* --- Detail page -------------------------------------------------------- */
+
+.creator-detail__image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: var(--pico-border-radius);
+  margin-bottom: 1.5rem;
+}
+
+.creator-detail__actions,
+.edit-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.creator-detail__actions [role='button'],
+.creator-detail__actions button,
+.edit-actions button {
+  margin-bottom: 0;
+  width: auto;
+}
+
+/* --- Error panel -------------------------------------------------------- */
+
+.error-panel {
+  border-left: 4px solid var(--pico-del-color);
+}
