@@ -4,7 +4,7 @@ Submitted by: **Arul Agarwal**
 
 About this web app: **A single-page React app for cataloging your favorite content creators. Browse them as a card grid, open any creator at their own URL for full details, and add, edit, or delete creators — all persisted to a Supabase Postgres database.**
 
-Time spent: **TODO** hours
+Time spent: **1** hour
 
 ## Required Features
 
@@ -32,7 +32,7 @@ Here's a walkthrough of implemented required features:
 
 <img src='walkthrough.gif' title='Video Walkthrough' width='600' alt='Video Walkthrough' />
 
-GIF created with [Kap](https://getkap.co/)
+GIF recorded as a scripted browser session with [Playwright](https://playwright.dev/) and converted with ffmpeg
 
 ## Notes
 
@@ -43,6 +43,10 @@ Three things cost more time than expected, all of them silent failures rather th
 **Supabase now enables Row Level Security by default on new tables.** A table with RLS on and no policies is not an error — it just returns an empty array to the anon key. The homepage rendered its "no creators yet" empty state against six rows that were sitting in the database the whole time.
 
 **The Vite starter's `.gitignore` does not ignore `.env`.** It only covers `*.local`. Since this repo holds real Supabase credentials, `.env` and `.env.*` had to be added explicitly before the first commit — after a commit, removing a secret from git history is much harder than keeping it out in the first place.
+
+**Hotlinked avatars were unreliable.** The seed data originally pointed at YouTube's `yt3.googleusercontent.com` CDN. Those images rendered in some browsers and were rejected in others with `net::ERR_BLOCKED_BY_ORB`, since the CDN varies its response for cross-origin image requests. Vendoring the six avatars into `public/creators/` removed the third-party dependency entirely — the whole set is 184 KB.
+
+That change surfaced a second bug: the image field was `type="url"`, which rejects a relative path like `/creators/fireship.jpg`. Editing any bundled creator would have failed HTML5 validation and silently refused to save. The field is now `type="text"` so it accepts both absolute URLs and repo-relative paths.
 
 ## Tech Stack
 

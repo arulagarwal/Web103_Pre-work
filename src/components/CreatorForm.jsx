@@ -45,16 +45,20 @@ function CreatorForm({ values, onChange, onSubmit, submitLabel, disabled }) {
         />
       </label>
 
-      {/* Column name is camelCase in Postgres, so this must match exactly. */}
+      {/* Column name is camelCase in Postgres, so this must match exactly.
+          type="text" rather than type="url" on purpose: the bundled creators
+          use repo-relative paths like /creators/fireship.jpg, and type="url"
+          rejects anything without a scheme -- which would block saving an edit
+          to any of them. */}
       <label htmlFor="imageURL">
         Image URL <small>(optional)</small>
         <input
           id="imageURL"
           name="imageURL"
-          type="url"
+          type="text"
           value={values.imageURL}
           onChange={onChange}
-          placeholder="https://example.com/avatar.jpg"
+          placeholder="https://example.com/avatar.jpg or /creators/name.jpg"
         />
       </label>
 
