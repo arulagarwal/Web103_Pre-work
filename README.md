@@ -32,7 +32,11 @@ Here's a walkthrough of implemented required features:
 
 <img src='walkthrough.gif' title='Video Walkthrough' width='600' alt='Video Walkthrough' />
 
-GIF recorded as a scripted browser session with [Playwright](https://playwright.dev/) and converted with ffmpeg
+The browser address bar stays visible throughout, so each creator's own URL can be seen
+changing as you navigate — `/creators/1` for Fireship, `/creators/6` for Molly White, and so on.
+A higher-resolution version of the same walkthrough is committed as [`walkthrough.mp4`](walkthrough.mp4).
+
+Recorded as a scripted browser session with [Playwright](https://playwright.dev/), screen-captured and encoded with ffmpeg
 
 ## Notes
 
